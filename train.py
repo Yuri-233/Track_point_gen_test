@@ -173,7 +173,8 @@ for epoch in range(epochs):
         lsall += ls.item()
         psall += ps.item()
 
-        dataTrain.set_description(desc="epoch {}, loss {}, fanloss {}, lsloss {}, psloss {}".format(epoch, allloss/(index+1), flsall/(index+1),lsall/(index+1),psall/(index+1)))
+        if index % 100 == 0:  # 例如，每100次迭代输出一次
+            dataTrain.set_description(desc="epoch {}, loss {}, fanloss {}, lsloss {}, psloss {}".format(epoch, allloss/(index+1), flsall/(index+1),lsall/(index+1),psall/(index+1)))
         max_xlk = allloss/(index+1)
 
     if max_xl > max_xlk:

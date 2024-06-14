@@ -14,17 +14,18 @@
     }
   </style>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const touchArea = document.getElementById('touchArea');
+
+    var process_func=function(){
+      const touchArea = document.getElementsByClassName('slider-bg-tip');
       window.points = [];
       // 鼠标点击事件
-      window.addEventListener('mousedown', function(event) {
+      touchArea.addEventListener('mousedown', function(event) {
           console.log('鼠标点击了元素！');
           window.click=true;
           // 在这里处理点击事件
       });
       // 鼠标松开事件
-      window.addEventListener('mouseup', function(event) {
+      touchArea.addEventListener('mouseup', function(event) {
           console.log('鼠标松开了元素！');
           window.click=false
           // 在这里处理松开事件
@@ -46,16 +47,24 @@
           window.points = []
       });
 
-      window.addEventListener('mousemove', (e) => {
+      touchArea.addEventListener('mousemove', (e) => {
         if (window.click){
           e.preventDefault();
           points.push({ x: e.clientX, y: e.clientY ,time: e.timeStamp});
         }
         
       });
+    }
+
+    document.addEventListener('DOMContentLoaded',()=>{
+      document.body.addEventListener('mousedown', function(event) {
+
+        process_func()
+
+      });
+    } );
 
 
-    });
   </script>
 </head>
 <body>
